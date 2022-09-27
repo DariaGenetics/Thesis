@@ -263,9 +263,9 @@ autoplot(DGRPDataSTRAIGHTLINESNoNAsPCA, loadings = TRUE, loadings.colour = 'blue
   #minimizing principle components
     DGRPDataSTRAIGHTLINESNoNAsPrComp <- prcomp(DGRPDataSTRAIGHTLINESNoNAsCor, center = TRUE, scale = FALSE)
     plot(cumsum(DGRPDataSTRAIGHTLINESNoNAsPrComp$sdev^2/sum(DGRPDataSTRAIGHTLINESNoNAsPrComp$sdev^2)))
-        #takeaways: the first 6 principle compoents explain ~70% of the variation 
-    pc.ST.use <- 3
-    trunc <- res$x[,1:pc.use] %*% t(res$rotation[,1:pc.use])
+        #takeaways: the first 6 principle components explain ~70% of the variation 
+    pc.ST.use <- 6
+    trunc <- DGRPDataSTRAIGHTLINESNoNAsPrComp[,1:pc.ST.use] #### Ongoing problems 
 
    
 #INV
@@ -273,13 +273,14 @@ DGRPDataCURVYLINESNoNAsCorPCA <- princomp(DGRPDataCURVYLINESNoNAsCor, cor = FALS
 autoplot(DGRPDataCURVYLINESNoNAsCorPCA, loadings = TRUE, loadings.colour = 'blue',
          loadings.label = TRUE, loadings.label.size = 3) #<-- generates PCA plot
   #minimizing principle components
+DGRPDataCURVYLINESNoNAsCorPCA <- as.numeric(unlist(DGRPDataCURVYLINESNoNAsCorPCA))
     DGRPDataCURVYLINESNoNAsPrComp <- prcomp(DGRPDataCURVYLINESNoNAsCorPCA, center = TRUE, scale = FALSE)
     plot(cumsum(DGRPDataSTRAIGHTLINESNoNAsPrComp$sdev^2/sum(DGRPDataSTRAIGHTLINESNoNAsPrComp$sdev^2)))
         #takeaways: the first 6 principle compoents explain ~70% of the variation 
   
 
 ~~~~~~~~~~~~cPCA with INV/ST lines~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- ALL BELOW IS CODE COPIES NONADAPTED
+ ALL BELOW IS CODE COPIED NONADAPTED
        
          scpca_df <- scpca_sim$x %>%
    as_tibble() %>%
